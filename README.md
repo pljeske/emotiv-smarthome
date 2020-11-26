@@ -1,3 +1,7 @@
+# Python Websocket Connection
+1. Run simple_websocket.py
+2. Run cortex_connection.py
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
