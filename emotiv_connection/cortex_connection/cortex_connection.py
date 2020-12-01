@@ -1,9 +1,9 @@
 import json
 
-from cortex2 import EmotivCortex2Client
-import time
 import websockets
 import asyncio
+import time
+from fixedlib.cortex2_client import EmotivCortex2Client
 
 
 class CortexConnection:
@@ -25,6 +25,7 @@ class CortexConnection:
         self.client.authenticate()
         # Connect to headset, connect to the first one found, and start a session for it
         self.client.query_headsets()
+        print(self.client.connected_headsets)
         self.client.connect_headset(0)
         self.client.create_session(0)
         self.client.subscribe(streams=['com'])
@@ -63,24 +64,26 @@ class CortexConnection:
                 print(e)
 
     async def send_message(self, command: dict) -> None:
-        data = {'command': command['com'][0], 'probability': command['com'][1],
-                'ago': '{}ms'.format(str(int((time.time() - command['time']) * 1000)))}
-        message = json.dumps(data)
+        time_ago = int('{}'.format(str(int((time.time() - command['time']) * 1000))))
+        data = {'command': command['com'][0], 'probability': command['com'][1], 'ms_ago': time_ago}
+        neutral = {'command': 'neutral', 'probability': 0, 'ms_ago': time_ago}
+        if data['probability'] < 0.1:
+            message = json.dumps(neutral)
+        else:
+            message = json.dumps(data)
         print('message sent: ' + message)
         async with websockets.connect(self.websocket_uri) as websocket:
             await websocket.send(message)
-            #await websocket.recv()
 
 
 if __name__ == "__main__":
-    connection = CortexConnection(url="wss://localhost:6868",
+    connection = CortexConnection(url="wss://host.docker.internal:6868",
                                   client_id="fDWLTEwn8RIOPgosLTrFIKzgirQl8367XsiPxLZ2",
                                   client_secret="mL5iWPiDypFJxG653Mi9j6tSOwNvisfa24ACa10NjSnOCsDLpt9AWkGAhvt753R8jthjMR3eGIFMQorEd751QqRKLTXeQgXIKIzi5sdEyo9atyuAqMI0L4sKNhRhuG49",
-                                  profile="lucas",
-                                  websocket_uri="ws://localhost:4000")
+                                  profile="simulated",
+                                  websocket_uri="ws://websocket:4000")
     connection.connect_to_cortex()
     connection.start_listening()
-
 
 # # find out docker host address
 # url = "wss://localhost:6868"

@@ -1,6 +1,6 @@
 # Python Websocket Connection
-1. Run simple_websocket.py
-2. Run cortex_connection.py
+1. Configure Emotiv connection (client_id, client_secret, profile) in /emotiv_connection/cortex_connection/cortex_connection.py
+2. Run "docker-comopose up"
 
 # Getting Started with Create React App
 

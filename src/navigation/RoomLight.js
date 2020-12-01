@@ -57,10 +57,11 @@ export default class RoomLight extends React.Component {
         //     console.log('connected to websocket')
         // }
         this.props.ws.onmessage = evt => {
+            console.log(evt.data);
             let message = '';
             try{
-                message = evt.data.split(' - ')[1]
-                message = JSON.parse(message)
+                // message = evt.data.split(' - ')[1]
+                message = JSON.parse(evt.data)
                 console.log('RoomLight: ' + JSON.stringify(message))
                 if(message.command === 'push') {
                     this.switchLightHandler()
