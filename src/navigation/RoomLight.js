@@ -59,8 +59,6 @@ export default class RoomLight extends React.Component {
         }
         if (event.key === 'ArrowDown') {
             this.refNavigationCross.current.setState({movement: 'down', targetView: 'overview'});
-            //this.props.handleViewChange('overview');
-            //this.handleMe();
         }
     }
 
@@ -80,7 +78,7 @@ export default class RoomLight extends React.Component {
                 message = JSON.parse(evt.data)
                 console.log('RoomLight: ' + JSON.stringify(message))
                 if (message.command === 'push') {
-                    //this.switchLightHandler()
+                    this.switchLightHandler()
                 }
                 if (message.command === 'pull') {
                     this.props.handleViewChange('overview');

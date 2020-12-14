@@ -29,7 +29,7 @@ export default class NavigationCross extends React.Component {
         }, 500);
     }
 
-    // TODO: Needs further refinement ot avoid memory leaks at later points
+    // TODO: Needs further refinement ot avoid memory leaks at later points, wasn't in the mood to tackle that now ^^
     // SEE: https://stackoverflow.com/questions/53949393/cant-perform-a-react-state-update-on-an-unmounted-component
     /*
     componentWillUnmount() {
