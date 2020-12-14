@@ -1,3 +1,7 @@
+:root {
+    --main-accent: #880000;
+    --main-black: #000000;
+}
 .nav-cross {
     position: fixed;
     top: 50%;
@@ -15,10 +19,19 @@
     "left-arrow nav-middle right-arrow"
     ". down-arrow .";
 }
+.arrow-text {
+    font-size: 35px;
+    margin-top: 0;
+}
+
+.arrow-text--single {
+    margin-top: 30px;
+}
 .up-arrow {
     grid-area: up-arrow;
     width: 150px;
     height: 150px;
+    background: var(--main-accent);
 }
 .right-arrow {
     grid-area: right-arrow;
@@ -35,10 +48,132 @@
     height: 150px;
     width: 150px;
 }
+
+.left-arrow-img {
+    width: 100px;
+    height: 100px;
+    margin-left: 30px;
+    margin-top: 25px;
+}
+
+.right-arrow-img {
+    width: 100px;
+    height: 100px;
+    margin-right: 30px;
+    margin-top: 25px;
+}
+
+.info-img {
+    margin-top: 10px;
+    width: 80px;
+    height: 80px;
+}
+
 .nav-middle {
     grid-area: nav-middle;
+    height: 150px;
+    width: 150px;
 }
 
 .invisible {
     opacity: 0;
+}
+
+.logo {
+    font-family: 'Nunito', sans-serif;
+}
+
+.line-one {
+    font-weight: bold;
+    font-size: 38px;
+    margin-bottom: 0;
+    margin-top: 25px
+}
+
+.line-two {
+    font-size: 30px;
+    margin-top: 0;
+}
+
+.svg {
+    width: 80px;
+}
+
+.down {
+    animation: movePull 5s linear 1;
+    animation-fill-mode: forwards;
+}
+
+.right {
+    animation: moveRight 5s linear 1;
+    animation-fill-mode: forwards;
+}
+
+.left {
+    animation: moveLeft 5s linear 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes movePull {
+    60% {
+        transform:translate(-20px, 15px);
+        width: 90px;
+        height: 90px;
+        fill: var(--main-black);
+    }
+    80% {
+        transform:translate(-20px, 15px);
+        width: 90px;
+        height: 90px;
+        fill: var(--main-accent);
+    }
+    100%{
+        transform:translate(-50px, 90px);
+        width: 150px;
+        height: 10px;
+        fill: var(--main-accent);
+    }
+}
+
+@keyframes moveRight {
+    60% {
+        transform:translate(50px, 0px);
+        width: 50px;
+        height: 50px;
+        fill: var(--main-black);
+    }
+    80% {
+        transform:translate(50px, 0px);
+        width: 50px;
+        height: 50px;
+        fill: var(--main-accent);
+    }
+    100%{
+        transform:translate(90px, -50px);
+        width: 10px;
+        height: 150px;
+        fill: var(--main-accent);
+    }
+}
+
+
+@keyframes moveLeft {
+    60% {
+        transform:translate(-50px, 0px);
+        width: 50px;
+        height: 50px;
+        fill: var(--main-black);
+    }
+    80% {
+        transform:translate(-50px, 0px);
+        width: 50px;
+        height: 50px;
+        fill: var(--main-accent);
+    }
+    100%{
+        transform:translate(-50px, -50px);
+        width: 10px;
+        height: 150px;
+        fill: var(--main-accent);
+    }
 }

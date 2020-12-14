@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Main from "./navigation/Main";
 import React from 'react';
