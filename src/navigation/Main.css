@@ -5,3 +5,11 @@ h1 {
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
 }
+
+h2 {
+    position: fixed;
+    top: 13%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+}

@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 
-import bulbBlack from '../icons/streamline-bulb-black.png';
-import bulbYellow from '../icons/streamline-bulb-yellow.png';
+import bulbBlack from '../icons/lightbulb_off.svg';
+import bulbYellow from '../icons/lightbulb_on.svg';
 import NavigationCross from "./NavigationCross";
+import lightSwitchIcon from "../icons/lightswitch.svg";
 
 const API_BASE = "http://192.168.178.32:1880/endpoint";
 // const API_BASE = "http://localhost:1880/endpoint";
@@ -11,9 +12,11 @@ const API_BASE = "http://192.168.178.32:1880/endpoint";
 export default class RoomLight extends React.Component {
     constructor(props) {
         super(props);
+        this.refNavigationCross = React.createRef();
         this.state = {
-            on: false
+            on: true
         }
+        this.handleStateChange = this.handleStateChange.bind(this)
     }
 
     getStatusFromApi = () => {
@@ -31,6 +34,15 @@ export default class RoomLight extends React.Component {
             });
     }
 
+    handleStateChange(command) {
+        if(command === 'switchLight') {
+            this.setState(prevState => ( {
+                on: !prevState.on} ));
+        }
+    }
+
+    /*
+    // Implement WS
     switchLightHandler = () => {
         axios.get(API_BASE + this.props.light.endpoint + '/switch')
             .then(res => {
@@ -39,31 +51,33 @@ export default class RoomLight extends React.Component {
                 }
             })
     }
+     */
 
     keyHandler = (event) => {
-        if (event.key === 'ArrowUp') {
-            this.switchLightHandler();
+        if (event.key === 'ArrowRight') {
+            this.refNavigationCross.current.setState({movement: 'right', command: 'switchLight'});
         }
-        if (event.key === 'ArrowLeft') {
-            this.props.handleViewChange('overview');
+        if (event.key === 'ArrowDown') {
+            this.refNavigationCross.current.setState({movement: 'down', targetView: 'overview'});
         }
     }
 
     componentDidMount() {
         document.addEventListener('keydown', this.keyHandler);
-        this.getStatusFromApi();
+        //this.getStatusFromApi();
 
         // this.ws.onopen = () => {
         //     console.log('connected to websocket')
         // }
+        /*
         this.props.ws.onmessage = evt => {
             console.log(evt.data);
             let message = '';
-            try{
+            try {
                 // message = evt.data.split(' - ')[1]
                 message = JSON.parse(evt.data)
                 console.log('RoomLight: ' + JSON.stringify(message))
-                if(message.command === 'push') {
+                if (message.command === 'push') {
                     this.switchLightHandler()
                 }
                 if (message.command === 'pull') {
@@ -75,37 +89,30 @@ export default class RoomLight extends React.Component {
                 console.log(message)
             }
         }
+         */
         // this.ws.onclose = () => {
         //     console.log('disconnected from websocket')
         // }
     }
+
     componentWillUnmount() {
         document.removeEventListener('keydown', this.keyHandler);
     }
 
-    render(){
-        let display = <Display on={this.state.on}/>
+    render() {
+        let back = <p className="arrow-text arrow-text--single">BACK</p>
+        let lightingStatus = this.state.on ? "ON" : "OFF";
+        let lightSwitch = <img src={lightSwitchIcon} className="right-arrow-img svg" />
+        let bulb = this.state.on ? <img alt="bulb black" src={bulbYellow} className="info-img"/> : <img alt="light bulb" src={bulbBlack} className="info-img"/>
+        let display = <span className="nav-middle">{bulb}<p className="line-two"><strong>{lightingStatus}</strong></p></span>
         return (
             <div>
-                <h1>{this.props.room} - Light</h1>
-                <NavigationCross up={'switch'} left={'BACK'} down={null} right={null} middle={display}/>
+                <h1>Light</h1>
+                <h2>{this.props.room}</h2>
+                <NavigationCross ref={this.refNavigationCross} up={display} down={back} right={lightSwitch}
+                                 handleStateChange={this.handleStateChange} handleViewChange={this.props.handleViewChange}/>
             </div>
-            )
-
-    }
-}
-
-class Display extends React.Component {
-    render(){
-        let iconSource = bulbBlack;
-        if (this.props.on) {
-            iconSource = bulbYellow;
-        }
-
-        return (
-            <img src={iconSource} alt="bulb" className="nav-middle"/>
         )
+
     }
-
 }
-
