@@ -2,16 +2,12 @@ version: '3'
 services:
   react_app:
     build: .
-    restart: always
+    restart: unless-stopped
     ports:
       - 3000:3000
 
   websocket:
-    build: ./emotiv_connection/websocket_server
-    restart: always
+    build: ./emotiv_connection/nodered
+    restart: unless-stopped
     ports:
-      - 4000:4000
-
-  cortex:
-    build: ./emotiv_connection/cortex_connection
-    restart: always
+      - 1880:1880

@@ -1,6 +1,7 @@
-# Python Websocket Connection
-1. Configure Emotiv connection (client_id, client_secret, profile) in /emotiv_connection/cortex_connection/cortex_connection.py
-2. Run "docker-comopose up"
+# Docker Setup
+1. Configure Emotiv connection (client_id, client_secret, profile) in /emotiv_connection/nodered/bci-config.js
+2. Set websocketUrl in src/config/config.js to 'ws://host.docker.internal:1880/ws/commands'
+3. Run "docker-comopose up" in root directory
 
 # Getting Started with Create React App
 
