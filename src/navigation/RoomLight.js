@@ -1,13 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 
+import {config} from '../config/config';
+
 import bulbBlack from '../icons/lightbulb_off.svg';
 import bulbYellow from '../icons/lightbulb_on.svg';
 import NavigationCross from "./NavigationCross";
 import lightSwitchIcon from "../icons/lightswitch.svg";
 
-const API_BASE = "http://192.168.178.32:1880/endpoint";
-// const API_BASE = "http://localhost:1880/endpoint";
+const API_BASE = config.homeassistantApi;
 
 export default class RoomLight extends React.Component {
     constructor(props) {
