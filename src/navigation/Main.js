@@ -2,44 +2,14 @@ import React from 'react';
 import Room from "./Room";
 import './Main.css';
 import {config} from '../config/config';
-
-export const ROOMS = [
-    {
-        room: "Bedroom",
-        light: {
-            endpoint: "/bedroom/light"
-        },
-        temperature: {
-            endpoint: "/bedroom/temperature"
-        }
-    }
-    , {
-        room: "Living Room",
-        light: {
-            endpoint: "/living/light"
-        },
-        temperature: {
-            endpoint: "/living/temperature"
-        }
-    },
-    {
-        room: "Kitchen",
-        roomState: "outside",
-        light: {
-            endpoint: "/kitchen/light"
-        },
-        temperature: {
-            endpoint: "/kitchen/temperature"
-        }
-    }
-]
+import {roomConfig} from "../config/roomConfig";
 
 export default class Main extends React.Component {
     constructor(props){
         super(props);
         this.currentRoom = 0;
         this.changeRoomHandler = this.changeRoomHandler.bind(this);
-        this.state = ROOMS[this.currentRoom];
+        this.state = roomConfig[this.currentRoom];
         this.ws = new WebSocket(config.websocketUrl);
     }
 
@@ -63,8 +33,8 @@ export default class Main extends React.Component {
 
     changeRoomHandler() {
         console.log("Main - changeRoomHandler")
-        this.currentRoom = (this.currentRoom + 1) % ROOMS.length;
-        this.setState(ROOMS[this.currentRoom]);
+        this.currentRoom = (this.currentRoom + 1) % roomConfig.length;
+        this.setState(roomConfig[this.currentRoom]);
     }
 
     render(){
