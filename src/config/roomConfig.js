@@ -19,7 +19,7 @@ export const roomConfig = [
     },
     {
         room: "Kitchen",
-        roomState: "outside",
+        // roomState: "outside",
         light: {
             endpoint: "/kitchen/light"
         },
