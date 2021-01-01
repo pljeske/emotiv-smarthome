@@ -65,9 +65,6 @@ export default class NavigationCross extends React.Component {
         } else {
             buttons.push(<img src={leftArrow} className="left-arrow invisible"/>);
         }
-        if (this.props.middle != null) {
-            buttons.push(this.props.middle);
-        }
 
         return (
             <div className="nav-cross">
