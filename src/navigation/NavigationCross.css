@@ -73,6 +73,13 @@
     grid-area: nav-middle;
     height: 150px;
     width: 150px;
+    display: inline-grid;
+    grid-template-columns: 75px 75px;
+    grid-template-rows: 75px 75px;
+    gap: 0 0;
+    grid-template-areas:
+    "ul ur"
+    "dl dr";
 }
 
 .invisible {
@@ -85,14 +92,39 @@
 
 .line-one {
     font-weight: bold;
-    font-size: 38px;
-    margin-bottom: 0;
-    margin-top: 25px
+    font-size: 34px;
+    /*margin-bottom: 0;*/
+    /*margin-top: 10px;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: ur;
 }
 
 .line-two {
-    font-size: 30px;
-    margin-top: 0;
+    font-weight: bold;
+    font-size: 34px;
+    /*margin-top: 0;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: dr;
+}
+
+.current-temp-icon {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: ul;
+}
+
+.goal-temp-icon {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: dl;
 }
 
 .svg {

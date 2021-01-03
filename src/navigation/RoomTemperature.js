@@ -2,13 +2,19 @@ import React from 'react';
 import NavigationCross from "./NavigationCross";
 import plusIcon from "../icons/add.svg";
 import minusIcon from "../icons/minus.svg";
+import targetIcon from "../icons/target_icon.png";
+import tempIcon from "../icons/temp_icon.png";
+
+import axios from 'axios';
+import {HASSIO_URL} from "./Main";
 
 export default class RoomTemperature extends React.Component {
     constructor(props) {
         super(props);
         this.refNavigationCross = React.createRef();
         this.state = {
-            currentTemp: 10
+            currentTemp: 10,
+            goalTemp: 10
         }
         this.handleStateChange = this.handleStateChange.bind(this);
     }
@@ -27,15 +33,39 @@ export default class RoomTemperature extends React.Component {
 
     handleStateChange(command) {
         if(command === 'increase' && this.state.currentTemp + 1 <= 40) {
-            this.setState({currentTemp: this.state.currentTemp + 1});
+            this.setState({
+                goalTemp: this.state.goalTemp + 1,
+                currentTemp: this.state.currentTemp
+            });
             console.log("TRACKED.")
         } else if (command === 'decrease' && this.state.currentTemp - 1 >= 0) {
-            this.setState({currentTemp: this.state.currentTemp - 1});
+            this.setState({
+                goalTemp: this.state.goalTemp - 1,
+                currentTemp: this.state.currentTemp
+            });
         }
+    }
+
+    getStatusFromApi = () => {
+        let that = this;
+        axios.get(HASSIO_URL + this.props.temperature.endpoint)
+            .then(function (response) {
+                if (response.data) {
+                    that.setState({
+                        currentTemp: Math.round(response.data.current_temp),
+                        goalTemp: response.data.goal_temp
+                    });
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     componentDidMount() {
         document.addEventListener('keydown', this.keyHandler);
+
+        this.getStatusFromApi();
 
         this.props.ws.onmessage = evt => {
             let message = '';
@@ -69,7 +99,10 @@ export default class RoomTemperature extends React.Component {
     }
 
     render() {
-        let display = <span className="nav-middle"><p className="line-one">{this.state.currentTemp}</p><p className="line-two">Grad</p></span>
+        let display = <span className="nav-middle">
+            <img className="current-temp-icon" src={tempIcon} alt="current temp"/><p className="line-one ur">{this.state.currentTemp}</p>
+            <img className="goal-temp-icon" src={targetIcon} alt="goal temp"/><p className="line-two dr">{this.state.goalTemp}</p>
+        </span>
         let plusDisplay = <img alt="Plus icon" src={plusIcon} className="right-arrow-img svg"/>
         let minusDisplay = <img alt="Minus icon" src={minusIcon} className="left-arrow-img svg"/>
         let back = <p className="arrow-text arrow-text--single">BACK</p>
