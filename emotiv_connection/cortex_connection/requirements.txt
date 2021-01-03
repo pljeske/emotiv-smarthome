@@ -1,3 +1,0 @@
-cortex2~=1.0.1
-websockets~=8.1
-SimpleWebSocketServer~=0.1.1

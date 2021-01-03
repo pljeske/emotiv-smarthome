@@ -1,0 +1,8 @@
+version: '3'
+services:
+  nodered:
+    build: .
+    volumes:
+      - ./data:/data
+    ports:
+      - 1880:1880

@@ -39,7 +39,7 @@ export default class Main extends React.Component {
         this.currentRoom = 0;
         this.changeRoomHandler = this.changeRoomHandler.bind(this);
         this.state = ROOMS[this.currentRoom];
-        this.ws = new WebSocket('ws://host.docker.internal:4000');
+        this.ws = new WebSocket('ws://127.0.0.1:1880/ws/mentalCmd');
     }
 
     componentDidMount() {
