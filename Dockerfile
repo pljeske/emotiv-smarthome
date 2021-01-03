@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:latest
 
 WORKDIR /app
 
@@ -12,4 +12,5 @@ COPY . /app
 
 EXPOSE 3000
 
-CMD ["/app/startapp.sh"]
+#CMD ["yarn", "run", "start"]
+CMD ["bash", "/app/startapp.sh"]
