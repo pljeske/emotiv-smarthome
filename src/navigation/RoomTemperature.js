@@ -40,8 +40,24 @@ export default class RoomTemperature extends React.Component {
         this.props.ws.onmessage = evt => {
             let message = '';
             try{
-                message = JSON.parse(evt.data)
-                console.log('RoomTemperature: ' + message)
+                message = JSON.parse(evt.data);
+                switch(message.action) {
+                    case "movePull":
+                        this.refNavigationCross.current.setState({movement: 'down', targetView: 'overview'});
+                        break;
+                    case "moveRight":
+                        this.refNavigationCross.current.setState({movement: 'right', command: 'increase'});
+                        break;
+                    case "moveLeft":
+                        this.refNavigationCross.current.setState({movement: 'left', command: 'decrease'});
+                        break;
+                    case "moveNeutral":
+                        this.refNavigationCross.current.setState({movement: ''});
+                        break;
+                    default:
+                        console.log("Unrecognisable mental command." + message.action);
+                        break;
+                }
             } catch (exception) {
                 message = evt.data;
                 console.log(message)

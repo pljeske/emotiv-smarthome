@@ -27,8 +27,24 @@ export default class RoomOverview extends React.Component {
         this.props.ws.onmessage = evt => {
             let message = '';
             try{
-                message = JSON.parse(evt.data)
-                console.log('RoomOverview: ' + message)
+                message = JSON.parse(evt.data);
+                switch(message.action) {
+                    case "movePull":
+                        this.refNavigationCross.current.setState({movement: 'down', targetView: 'room'});
+                        break;
+                    case "moveRight":
+                        this.refNavigationCross.current.setState({movement: 'right', targetView: 'temperature'});
+                        break;
+                    case "moveLeft":
+                        this.refNavigationCross.current.setState({movement: 'left', targetView: 'light'});
+                        break;
+                    case "moveNeutral":
+                        this.refNavigationCross.current.setState({movement: ''});
+                        break;
+                    default:
+                        console.log("Unrecognisable mental command." + message.action);
+                        break;
+                }
             } catch (exception) {
                 message = evt.data;
                 console.log(message)

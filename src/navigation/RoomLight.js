@@ -64,35 +64,34 @@ export default class RoomLight extends React.Component {
 
     componentDidMount() {
         document.addEventListener('keydown', this.keyHandler);
-        //this.getStatusFromApi();
 
-        // this.ws.onopen = () => {
-        //     console.log('connected to websocket')
-        // }
-        /*
         this.props.ws.onmessage = evt => {
-            console.log(evt.data);
             let message = '';
-            try {
-                // message = evt.data.split(' - ')[1]
-                message = JSON.parse(evt.data)
-                console.log('RoomLight: ' + JSON.stringify(message))
-                if (message.command === 'push') {
-                    this.switchLightHandler()
-                }
-                if (message.command === 'pull') {
-                    this.props.handleViewChange('overview');
+            try{
+                message = JSON.parse(evt.data);
+                switch(message.action) {
+                    case "movePull":
+                        this.refNavigationCross.current.setState({movement: 'down', targetView: 'overview'});
+                        break;
+                    case "moveRight":
+                        this.refNavigationCross.current.setState({movement: 'right', command: 'switchLight'});
+                        break;
+                    case "moveLeft":
+                        console.log("No action assigned for left -> dismiss this action.");
+                        break;
+                    case "moveNeutral":
+                        this.refNavigationCross.current.setState({movement: ''});
+                        break;
+                    default:
+                        console.log("Unrecognisable mental command." + message.action);
+                        break;
                 }
             } catch (exception) {
-                console.log(exception)
                 message = evt.data;
                 console.log(message)
             }
         }
-         */
-        // this.ws.onclose = () => {
-        //     console.log('disconnected from websocket')
-        // }
+
     }
 
     componentWillUnmount() {
