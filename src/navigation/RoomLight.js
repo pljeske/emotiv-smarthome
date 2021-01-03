@@ -6,8 +6,7 @@ import bulbYellow from '../icons/lightbulb_on.svg';
 import NavigationCross from "./NavigationCross";
 import lightSwitchIcon from "../icons/lightswitch.svg";
 
-const API_BASE = "http://192.168.178.32:1880/endpoint";
-// const API_BASE = "http://localhost:1880/endpoint";
+import { HASSIO_URL } from "./Main";
 
 export default class RoomLight extends React.Component {
     constructor(props) {
@@ -21,7 +20,7 @@ export default class RoomLight extends React.Component {
 
     getStatusFromApi = () => {
         let that = this;
-        axios.get(API_BASE + this.props.light.endpoint)
+        axios.get(HASSIO_URL + this.props.light.endpoint)
             .then(function (response) {
                 if (response.data.state === 'on') {
                     that.setState({on: true});
@@ -38,20 +37,19 @@ export default class RoomLight extends React.Component {
         if(command === 'switchLight') {
             this.setState(prevState => ( {
                 on: !prevState.on} ));
+            this.switchLightHandler();
         }
     }
 
-    /*
-    // Implement WS
     switchLightHandler = () => {
-        axios.get(API_BASE + this.props.light.endpoint + '/switch')
+        axios.get(HASSIO_URL + this.props.light.endpoint + '/switch')
             .then(res => {
                 if (res.status === 200) {
                     this.getStatusFromApi();
                 }
             })
     }
-     */
+
 
     keyHandler = (event) => {
         if (event.key === 'ArrowRight') {
@@ -64,6 +62,8 @@ export default class RoomLight extends React.Component {
 
     componentDidMount() {
         document.addEventListener('keydown', this.keyHandler);
+
+        this.getStatusFromApi();
 
         this.props.ws.onmessage = evt => {
             let message = '';

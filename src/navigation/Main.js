@@ -2,6 +2,7 @@ import React from 'react';
 import Room from "./Room";
 import './Main.css';
 
+export const HASSIO_URL = 'http://192.168.178.32:1880/endpoint';
 export const ROOMS = [
     {
         room: "Bedroom",
