@@ -1,17 +1,15 @@
 version: '3'
 services:
-  react_app:
+  nodered:
+    build: ./emotiv_connection/nodered
+    restart: unless-stopped
+    ports:
+      - 1880:1880
+
+  smarthomeplus:
     build: .
-    restart: always
+    restart: unless-stopped
     ports:
-      - 3000:3000
-
-  websocket:
-    build: ./emotiv_connection/websocket_server
-    restart: always
-    ports:
-      - 4000:4000
-
-  cortex:
-    build: ./emotiv_connection/cortex_connection
-    restart: always
+      - 8080:3000
+    depends_on:
+      - nodered
