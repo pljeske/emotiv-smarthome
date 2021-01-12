@@ -1,6 +1,12 @@
-# Python Websocket Connection
+# Development Setup
 1. Configure Emotiv connection (client_id, client_secret, profile) in /emotiv_connection/cortex_connection/cortex_connection.py
-2. Run "docker-comopose up"
+2. Run "docker-comopose up" in folder docker-servers
+3. Run React app in preferred IDE
+
+# Staging Setup
+1. Configure Emotiv connection (client_id, client_secret, profile) in /emotiv_connection/cortex_connection/cortex_connection.py
+2. Run "docker-compose up" in root folder
+3. Go to http://localhost:8080
 
 # Getting Started with Create React App
 

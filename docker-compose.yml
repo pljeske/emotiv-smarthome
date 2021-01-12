@@ -6,6 +6,12 @@ services:
     ports:
       - 1880:1880
 
+  config_server:
+    build: docker-servers/smarthome-config-server
+    restart: unless-stopped
+    ports:
+      - 5000:5000
+
   smarthomeplus:
     build: .
     restart: unless-stopped
