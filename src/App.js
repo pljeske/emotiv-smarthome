@@ -25,12 +25,12 @@ class App extends React.Component {
         }
         axios.get(CONFIG_SERVER_URL + '/rooms/', config)
             .then(function (response) {
+                console.log(response.data);
                 that.setState({
                     rooms: response.data
                 });
-            })
-            .catch(function (error) {
-                console.log(error);
+            }).catch(function (error) {
+                console.log("ERROR: " + error);
             });
     }
 
@@ -71,24 +71,5 @@ class App extends React.Component {
 
     }
 }
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//           <Router>
-//               <Switch>
-//                   <Route path="/assistance">
-//                       <AssistanceSection/>
-//                   </Route>
-//                   <Route path="/">
-//                       <Main />
-//                   </Route>
-//               </Switch>
-//           </Router>
-//       </header>
-//     </div>
-//   );
-// }
 
 export default App;

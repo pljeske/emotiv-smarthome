@@ -1,6 +1,7 @@
 import React from 'react';
 import Room from "./Room";
 import './Main.css';
+import {Link} from "react-router-dom";
 
 export const HASSIO_URL = 'http://192.168.178.32:1880/endpoint';
 
@@ -31,15 +32,24 @@ export default class Main extends React.Component {
     }
 
     render(){
-        return (
-            <Room
-                key={this.state.room.id}
-                room={this.state.room}
-                light={this.state.light}
-                temperature={this.state.temperature}
-                changeRoomHandler={this.changeRoomHandler}
-                websocket={this.ws}
-            />
-        )
+        if (this.state != null && this.rooms.length > 0) {
+            return (
+                <Room
+                    key={this.state.room.id}
+                    room={this.state.room}
+                    light={this.state.light}
+                    temperature={this.state.temperature}
+                    changeRoomHandler={this.changeRoomHandler}
+                    websocket={this.ws}
+                />
+            )
+        } else {
+            return (
+                <div>
+                    <p>No rooms configured yet. Please go to <Link to="/assistance">assistance page</Link> for setup</p>
+                </div>
+            )
+        }
+
     }
 }
