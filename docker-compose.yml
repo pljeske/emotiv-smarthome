@@ -1,7 +1,7 @@
 version: '3'
 services:
   nodered:
-    build: ./emotiv_connection/nodered
+    build: docker-servers/bci-connection-nodered
     restart: unless-stopped
     ports:
       - 1880:1880

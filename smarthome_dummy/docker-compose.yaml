@@ -1,0 +1,9 @@
+version: '3'
+services:
+  smarthome:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ./data:/data
+    ports:
+      - 1881:1880
