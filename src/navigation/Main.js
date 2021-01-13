@@ -2,8 +2,7 @@ import React from 'react';
 import Room from "./Room";
 import './Main.css';
 import {Link} from "react-router-dom";
-
-export const HASSIO_URL = 'http://192.168.178.32:1880/endpoint';
+import {EMOTIV_WEBSOCKET} from "../App";
 
 export default class Main extends React.Component {
     constructor(props){
@@ -12,7 +11,7 @@ export default class Main extends React.Component {
         this.rooms = props.rooms;
         this.changeRoomHandler = this.changeRoomHandler.bind(this);
         this.state = this.rooms[this.currentRoom];
-        this.ws = new WebSocket('ws://127.0.0.1:1880/ws/mentalCmd');
+        this.ws = new WebSocket(EMOTIV_WEBSOCKET);
     }
 
     componentDidMount() {

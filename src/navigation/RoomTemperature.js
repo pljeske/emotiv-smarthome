@@ -6,7 +6,7 @@ import targetIcon from "../icons/target_icon.png";
 import tempIcon from "../icons/temp_icon.png";
 
 import axios from 'axios';
-import {HASSIO_URL} from "./Main";
+import {SMARTHOME_URL} from "../App";
 
 export default class RoomTemperature extends React.Component {
     constructor(props) {
@@ -48,7 +48,7 @@ export default class RoomTemperature extends React.Component {
 
     getStatusFromApi = () => {
         let that = this;
-        axios.get(HASSIO_URL + this.props.temperature.endpoint)
+        axios.get(SMARTHOME_URL + this.props.temperature.endpoint)
             .then(function (response) {
                 if (response.data) {
                     that.setState({

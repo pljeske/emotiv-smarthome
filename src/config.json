@@ -1,0 +1,5 @@
+{
+  "SMARTHOME_URL": "http://192.168.178.32:1880/endpoint",
+  "EMOTIV_WEBSOCKET": "ws://127.0.0.1:1880/ws/mentalCmd",
+  "CONFIG_SERVER_URL": "http://127.0.0.1:5000"
+}

@@ -6,7 +6,7 @@ import bulbYellow from '../icons/lightbulb_on.svg';
 import NavigationCross from "./NavigationCross";
 import lightSwitchIcon from "../icons/lightswitch.svg";
 
-import { HASSIO_URL } from "./Main";
+import { SMARTHOME_URL } from "../App";
 
 export default class RoomLight extends React.Component {
     constructor(props) {
@@ -20,7 +20,7 @@ export default class RoomLight extends React.Component {
 
     getStatusFromApi = () => {
         let that = this;
-        axios.get(HASSIO_URL + this.props.light.endpoint)
+        axios.get(SMARTHOME_URL + this.props.light.endpoint)
             .then(function (response) {
                 if (response.data.state === 'on') {
                     that.setState({on: true});
@@ -42,7 +42,7 @@ export default class RoomLight extends React.Component {
     }
 
     switchLightHandler = () => {
-        axios.get(HASSIO_URL + this.props.light.endpoint + '/switch')
+        axios.get(SMARTHOME_URL + this.props.light.endpoint + '/switch')
             .then(res => {
                 if (res.status === 200) {
                     this.getStatusFromApi();

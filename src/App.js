@@ -5,8 +5,11 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 import axios from "axios";
+import config from './config.json';
 
-export const CONFIG_SERVER_URL = 'http://localhost:5000'
+export const CONFIG_SERVER_URL = config.CONFIG_SERVER_URL;
+export const SMARTHOME_URL = config.SMARTHOME_URL;
+export const EMOTIV_WEBSOCKET = config.EMOTIV_WEBSOCKET;
 
 class App extends React.Component {
     constructor(props) {
