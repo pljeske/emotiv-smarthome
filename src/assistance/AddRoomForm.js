@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import {CONFIG_SERVER_URL} from "../App";
-import {Redirect} from 'react-router-dom';
 import {Button} from "react-bootstrap";
 
 export default class NameForm extends React.Component {
@@ -55,7 +54,7 @@ export default class NameForm extends React.Component {
             .then(function (response) {
                 console.log(response)
                 that.props.updateRooms();
-                that.props.handleButton();
+                that.props.showRoomConfig();
             })
             .catch(function (error) {
                 console.log(error);
@@ -63,30 +62,27 @@ export default class NameForm extends React.Component {
         event.preventDefault();
     }
 
-    renderRedirect = () => {
-        return (
-            <form onSubmit={this.handleSubmit} onReset={this.props.handleButton}>
-                <label>
-                    Room name:
-                    <input type="text" value={this.state.name} onChange={this.handleNameChange} />
-                </label><br />
-                <label>
-                    Endpoint light:
-                    <input type="text" value={this.state.lightEndpoint} onChange={this.handleLightChange} />
-                </label><br />
-                <label>
-                    Endpoint temperature:
-                    <input type="text" value={this.state.temperatureEndpoint} onChange={this.handleTemperatureChange} />
-                </label><br />
-                <Button variant="secondary" onClick={this.props.handleButton}>Back</Button>
-                <Button variant="primary" onClick={this.handleSubmit}>Submit</Button>
-            </form>
-        )
-    }
-
     render() {
-        return <div>
-            {this.renderRedirect()}
-        </div>
+        return (
+            <div>
+                <h1>Add new Room</h1>
+                <form onSubmit={this.handleSubmit} onReset={this.props.showRoomConfig}>
+                    <label>
+                        Room name:
+                        <input type="text" value={this.state.name} onChange={this.handleNameChange} />
+                    </label><br />
+                    <label>
+                        Endpoint light:
+                        <input type="text" value={this.state.lightEndpoint} onChange={this.handleLightChange} />
+                    </label><br />
+                    <label>
+                        Endpoint temperature:
+                        <input type="text" value={this.state.temperatureEndpoint} onChange={this.handleTemperatureChange} />
+                    </label><br />
+                    <Button variant="secondary" onClick={this.props.showRoomConfig}>Back</Button>
+                    <Button variant="primary" onClick={this.handleSubmit}>Submit</Button>
+                </form>
+            </div>
+        )
     }
 }

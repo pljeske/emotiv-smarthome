@@ -1,9 +1,8 @@
 import React from "react";
 import AddRoomForm from './AddRoomForm';
 import axios from 'axios';
-import RoomElement from "./RoomElement";
-import {Button} from "react-bootstrap";
 import HowTo from "./HowTo";
+import RoomConfig from "./RoomConfig";
 
 const CONFIG_SERVER_URL = 'http://localhost:5000';
 
@@ -39,13 +38,6 @@ export default class AssistanceSection extends React.Component {
             .catch(function (error) {
                 console.log(error);
             });
-    }
-
-    switchShowNewRoomForm = () => {
-        this.setState({
-            rooms: this.state.rooms,
-            showNewRoomForm: !this.state.showNewRoomForm
-        });
     }
 
     showHowTo = () => {
@@ -89,25 +81,13 @@ export default class AssistanceSection extends React.Component {
     }
 
     render(){
-        let fields = [];
         if (this.state.show === "config") {
-            for (let i in this.state.rooms) {
-                let room = this.state.rooms[i];
-                fields.push(<RoomElement key={room.id} id={room.id} name={room.room} lightEndpoint={room.light.endpoint}
-                                         temperatureEndpoint={room.temperature.endpoint} deleteRoom={this.deleteRoom} />)
-            }
-            fields.push(<Button variant="secondary" onClick={this.showHowTo}>How To</Button>);
-            fields.push(<Button variant="primary" onClick={this.showNewRoomForm}>New Room</Button>)
+            return <RoomConfig rooms={this.state.rooms} deleteRoom={this.deleteRoom} showHowTo={this.showHowTo}
+                                    showNewRoomForm={this.showNewRoomForm}/>;
         } else if (this.state.show === "newroom"){
-            fields.push(<AddRoomForm handleButton={this.showRoomConfig} updateRooms={this.updateRoomsFromServer}/>)
+            return <AddRoomForm showRoomConfig={this.showRoomConfig} updateRooms={this.updateRoomsFromServer}/>;
         } else {
-            fields.push(<HowTo gotoRoomConfig={this.showRoomConfig} />);
+            return <HowTo showRoomConfig={this.showRoomConfig} />;
         }
-
-        // fields.push(<RoomElement key={999} name={null} lightEndpoint={null} temperatureEndpoint={null} />)
-        return <div>
-            {fields}
-            {/*<AddRoomForm />*/}
-        </div>
     }
 }
