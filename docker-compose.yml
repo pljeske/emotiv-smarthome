@@ -1,10 +1,16 @@
 version: '3'
 services:
   nodered:
-    build: ./emotiv_connection/nodered
+    build: docker-servers/bci-connection-nodered
     restart: unless-stopped
     ports:
       - 1880:1880
+
+  config_server:
+    build: docker-servers/smarthome-config-server
+    restart: unless-stopped
+    ports:
+      - 5000:5000
 
   smarthomeplus:
     build: .
