@@ -37,6 +37,7 @@ export default class RoomTemperature extends React.Component {
                 goalTemp: this.state.goalTemp + 1,
                 currentTemp: this.state.currentTemp
             });
+            this.sendTemperatureToApi();
             console.log("TRACKED.")
         } else if (command === 'decrease' && this.state.currentTemp - 1 >= 0) {
             this.setState({
@@ -60,6 +61,13 @@ export default class RoomTemperature extends React.Component {
             .catch(function (error) {
                 console.log(error);
             });
+    }
+
+    sendTemperatureToApi = () => {
+        let data = {
+            "temperature": this.state.goalTemp
+        }
+        axios.post(SMARTHOME_URL + this.props.temperature.endpoint, data).then(r => console.log(r));
     }
 
     componentDidMount() {
