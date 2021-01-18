@@ -28,7 +28,6 @@ class App extends React.Component {
         }
         axios.get(CONFIG_SERVER_URL + '/rooms/', config)
             .then(function (response) {
-                console.log(response.data);
                 that.setState({
                     rooms: response.data
                 });

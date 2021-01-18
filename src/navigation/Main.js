@@ -25,7 +25,6 @@ export default class Main extends React.Component {
     }
 
     changeRoomHandler() {
-        console.log("Main - changeRoomHandler")
         this.currentRoom = (this.currentRoom + 1) % this.rooms.length;
         this.setState(this.rooms[this.currentRoom]);
     }

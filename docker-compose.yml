@@ -19,3 +19,4 @@ services:
       - 8080:3000
     depends_on:
       - nodered
+      - config_server

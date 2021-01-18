@@ -38,7 +38,6 @@ export default class RoomTemperature extends React.Component {
                 currentTemp: this.state.currentTemp
             });
             this.sendTemperatureToApi();
-            console.log("TRACKED.")
         } else if (command === 'decrease' && this.state.currentTemp - 1 >= 0) {
             this.setState({
                 goalTemp: this.state.goalTemp - 1,

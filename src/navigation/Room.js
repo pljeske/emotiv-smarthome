@@ -12,7 +12,6 @@ export default class Room extends React.Component {
     }
 
     handleViewChange = (view) => {
-        console.log("Room - handleViewChange")
         this.setState({view: view});
     }
 

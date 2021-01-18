@@ -52,7 +52,6 @@ export default class NameForm extends React.Component {
 
         axios.post(CONFIG_SERVER_URL + '/rooms/', this.state, config)
             .then(function (response) {
-                console.log(response)
                 that.props.updateRooms();
                 that.props.showRoomConfig();
             })

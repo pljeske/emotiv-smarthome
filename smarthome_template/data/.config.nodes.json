@@ -379,33 +379,6 @@
             }
         }
     },
-    "node-red-contrib-virtual-smart-home": {
-        "name": "node-red-contrib-virtual-smart-home",
-        "version": "1.16.0",
-        "local": false,
-        "nodes": {
-            "vsh-connection": {
-                "name": "vsh-connection",
-                "types": [
-                    "vsh-connection"
-                ],
-                "enabled": true,
-                "local": false,
-                "module": "node-red-contrib-virtual-smart-home",
-                "file": "/usr/src/node-red/node_modules/node-red-contrib-virtual-smart-home/connection.js"
-            },
-            "vsh-virtual-device": {
-                "name": "vsh-virtual-device",
-                "types": [
-                    "vsh-virtual-device"
-                ],
-                "enabled": true,
-                "local": false,
-                "module": "node-red-contrib-virtual-smart-home",
-                "file": "/usr/src/node-red/node_modules/node-red-contrib-virtual-smart-home/virtual-device.js"
-            }
-        }
-    },
     "node-red-contrib-yeelight": {
         "name": "node-red-contrib-yeelight",
         "version": "1.0.7",
@@ -455,6 +428,43 @@
                 "local": false,
                 "module": "node-red-node-tail",
                 "file": "/usr/src/node-red/node_modules/node-red-node-tail/28-tail.js"
+            }
+        }
+    },
+    "node-red-contrib-node-hue": {
+        "name": "node-red-contrib-node-hue",
+        "version": "0.9.5",
+        "local": false,
+        "nodes": {
+            "node-hue-out": {
+                "name": "node-hue-out",
+                "types": [
+                    "node-hue-out"
+                ],
+                "enabled": true,
+                "local": false,
+                "module": "node-red-contrib-node-hue",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-node-hue/red/hue-output.js"
+            },
+            "node-hue-in": {
+                "name": "node-hue-in",
+                "types": [
+                    "node-hue-in"
+                ],
+                "enabled": true,
+                "local": false,
+                "module": "node-red-contrib-node-hue",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-node-hue/red/hue-input.js"
+            },
+            "node-hue-bridge": {
+                "name": "node-hue-bridge",
+                "types": [
+                    "node-hue-bridge"
+                ],
+                "enabled": true,
+                "local": false,
+                "module": "node-red-contrib-node-hue",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-node-hue/red/hue-bridge.js"
             }
         }
     }
