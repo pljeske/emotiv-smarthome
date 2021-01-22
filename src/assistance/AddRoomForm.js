@@ -63,22 +63,22 @@ export default class NameForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container-sm">
                 <h1>Add new Room</h1>
                 <form onSubmit={this.handleSubmit} onReset={this.props.showRoomConfig}>
-                    <label>
-                        Room name:
-                        <input type="text" value={this.state.name} onChange={this.handleNameChange} />
-                    </label><br />
-                    <label>
-                        Endpoint light:
-                        <input type="text" value={this.state.lightEndpoint} onChange={this.handleLightChange} />
-                    </label><br />
-                    <label>
-                        Endpoint temperature:
-                        <input type="text" value={this.state.temperatureEndpoint} onChange={this.handleTemperatureChange} />
-                    </label><br />
-                    <Button variant="secondary" onClick={this.props.showRoomConfig}>Back</Button>
+                    <div className="form-group">
+                    <label>Room name:</label>
+                        <input className="form-control" placeholder="Enter a speaking room name.." type="text" value={this.state.name} onChange={this.handleNameChange} />
+                    </div>
+                    <div className="form-group">
+                    <label>Endpoint light:</label>
+                        <input type="text" className="form-control" placeholder="URL to the endpoint" value={this.state.lightEndpoint} onChange={this.handleLightChange} />
+                    </div>
+                    <div className="form-group">
+                        <label>Endpoint temperature:</label>
+                        <input type="text" className="form-control" placeholder="URL to the endpoint" value={this.state.temperatureEndpoint} onChange={this.handleTemperatureChange} />
+                    </div>
+                    <Button variant="secondary mr-4" onClick={this.props.showRoomConfig}>Back</Button>
                     <Button variant="primary" onClick={this.handleSubmit}>Submit</Button>
                 </form>
             </div>

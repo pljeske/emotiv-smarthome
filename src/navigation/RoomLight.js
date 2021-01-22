@@ -103,7 +103,7 @@ export default class RoomLight extends React.Component {
         let lightingStatus = this.state.on ? "ON" : "OFF";
         let lightSwitch = <img src={lightSwitchIcon} className="right-arrow-img svg" alt="right: switch light"/>
         let bulb = this.state.on ? <img alt="bulb black" src={bulbYellow} className="info-img"/> : <img alt="light bulb" src={bulbBlack} className="info-img"/>
-        let display = <span className="nav-middle">{bulb}<p className="line-two"><strong>{lightingStatus}</strong></p></span>
+        let display = <span>{bulb}<p className="logo-line-two"><strong>{lightingStatus}</strong></p></span>
         return (
             <div>
                 <h1>Light</h1>

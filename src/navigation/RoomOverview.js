@@ -1,6 +1,6 @@
 import React from 'react';
 import NavigationCross from "./NavigationCross";
-import lightBulb from '../icons/streamline-bulb-yellow.png';
+import lightBulb from '../icons/lightbulb_new.svg';
 import temperatureMeter from '../icons/streamline-temp-white.png';
 
 export default class RoomOverview extends React.Component {
@@ -59,7 +59,7 @@ export default class RoomOverview extends React.Component {
     render(){
         let lightDisplay = <img src={lightBulb} className="left-arrow-img"/>
         let tempDisplay = <img src={temperatureMeter} className="right-arrow-img"/>
-        let infoStatus = <div className="logo"><p className="line-one">SMART</p><p className="line-two">HOME +</p></div>
+        let infoStatus = <div className="logo"><p className="logo-line-one">SMART</p><p className="logo-line-two">HOME +</p></div>
         let nextRoom = <p className="arrow-text">Switch room</p>
         return (
             <div className="room-overview">
