@@ -5,3 +5,19 @@
 .header-text {
     color: white;
 }
+
+.carousel {
+    width:730px;
+    height:280px;
+}
+
+.btn-outline-proceed {
+    color: white!important;
+    border-color: white!important;
+}
+
+.btn-outline-proceed:hover {
+    color: white!important;
+    background-color: #880000!important;
+    border-color: #880000!important;
+}

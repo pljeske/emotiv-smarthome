@@ -14,11 +14,11 @@ export default class RoomElement extends React.Component {
 
     render(){
         return (
-            <div className="w-400">
+            <div className="w-400 mb-2">
                 <Card bg="secondary" border="primary" >
                     <Card.Header>
-                        {this.state.name}
-                        <Button variant="danger" onClick={() => this.props.deleteRoom(this.props.id)}>Delete</Button>
+                        <strong>{this.state.name}</strong>
+                        <Button variant="danger ml-2" onClick={() => this.props.deleteRoom(this.props.id)}>Delete</Button>
                     </Card.Header>
                     <Card.Body>
                         Light: {this.state.lightEndpoint} <br/>

@@ -11,11 +11,11 @@ export default class RoomConfig extends React.Component {
             fields.push(<RoomElement key={room.id} id={room.id} name={room.room} lightEndpoint={room.light.endpoint}
                                      temperatureEndpoint={room.temperature.endpoint} deleteRoom={this.props.deleteRoom} />)
         }
-        fields.push(<Button variant="secondary" onClick={this.props.showHowTo}>How To</Button>);
-        fields.push(<Button variant="primary" onClick={this.props.showNewRoomForm}>New Room</Button>)
+        fields.push(<Button className="mr-5" variant="outline-info" onClick={this.props.showHowTo}>Tutorial</Button>);
+        fields.push(<Button variant="primary" onClick={this.props.showNewRoomForm}>Add new Room</Button>)
         return (
             <div>
-                <h1>SmartHome+ Configuration</h1>
+                <h2>SmartHome+ Assistance</h2>
                 {fields}
             </div>
         )

@@ -90,6 +90,18 @@
     font-family: 'Nunito', sans-serif;
 }
 
+.logo-line-one {
+    font-weight: bold;
+    font-size: 38px;
+    margin-bottom: 0;
+    margin-top: 25px
+}
+
+.logo-line-two {
+    font-size: 30px;
+    margin-top: 0;
+}
+
 .line-one {
     font-weight: bold;
     font-size: 34px;
