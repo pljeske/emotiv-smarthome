@@ -15,4 +15,4 @@ Per room you need to setup the following endpoints in your smarthome setup (for 
 3. GET-Endpoint for getting temperature status (e.g. /kitchen/temperature) (response: {"current_temp": 18, "goal_temp": 22}) 
 4. POST-Endpoint for setting temperature (e.g. /kitchen/temperature) (request-body: {"temperature": 22})
 
-Put the URL of the smarthome instance in the src/config.json file.
+An example flow defining the endpoints for the Node Red addon for Home Assistant (https://www.home-assistant.io/hassio/) can be found in the homeassistant_flow folder.
